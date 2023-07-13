@@ -1,4 +1,5 @@
 import { connect } from 'react-redux';
+import { incrementLikes, decrementLikes } from '../../redux/actions';
 import { ReactComponent as Heart } from '../../assets/img/icons/heart.svg';
 
 function Likes(props) {
@@ -16,28 +17,16 @@ function Likes(props) {
 
 function mapStateToProps(state) {
   console.log('mapStateToProps >>> ', state);
-  const { likes } = state;
+  const { likesReducer } = state;
   return {
-    likes: likes.likes,
+    likes: likesReducer.likes,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    onIncrementLikes: () => {
-      console.log('click');
-      const action = {
-        type: 'INCREMENT',
-      };
-      dispatch(action);
-    },
-    onDecrementLikes: () => {
-      console.log('decrease');
-      const action = {
-        type: 'DECREMENT',
-      };
-      dispatch(action);
-    },
+    onIncrementLikes: () => dispatch(incrementLikes()),
+    onDecrementLikes: () => dispatch(decrementLikes()),
   };
 }
 
