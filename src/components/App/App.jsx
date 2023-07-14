@@ -1,5 +1,6 @@
 import Vincent from '../../assets/img/Vincent.jpg';
 import Likes from '../Likes/Likes';
+import Title from '../Title/Title';
 import './app.css';
 
 function App() {
@@ -9,6 +10,7 @@ function App() {
         <div className="card">
           <div className="card-image">
             <img src={Vincent} alt="Vincent Vega" />
+            <Title />
             <Likes />
           </div>
         </div>
