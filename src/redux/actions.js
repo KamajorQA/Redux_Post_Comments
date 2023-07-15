@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT } from './types';
+import { INCREMENT, DECREMENT, WRITE_TITLE } from './types';
 
 function incrementLikes() {
   return {
@@ -12,4 +12,11 @@ function decrementLikes() {
   };
 }
 
-export { incrementLikes, decrementLikes };
+function writeTitle(text) {
+  return {
+    type: WRITE_TITLE,
+    data: text,
+  };
+}
+
+export { incrementLikes, decrementLikes, writeTitle };

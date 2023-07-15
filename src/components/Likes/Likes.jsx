@@ -3,7 +3,6 @@ import { incrementLikes, decrementLikes } from '../../redux/actions';
 import { ReactComponent as Heart } from '../../assets/img/icons/heart.svg';
 
 function Likes(props) {
-  console.log('render > ', props);
   return (
     <div className="button-controls">
       <button onClick={props.onIncrementLikes}>
@@ -16,7 +15,6 @@ function Likes(props) {
 }
 
 function mapStateToProps(state) {
-  console.log('mapStateToProps >>> ', state);
   const { likesReducer } = state;
   return {
     likes: likesReducer.likes,
