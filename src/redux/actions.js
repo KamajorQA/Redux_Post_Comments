@@ -1,4 +1,4 @@
-import { INCREMENT, DECREMENT, WRITE_TITLE } from './types';
+import { INCREMENT, DECREMENT, WRITE_TITLE, CREATE_COMMENT } from './types';
 
 function incrementLikes() {
   return {
@@ -19,4 +19,11 @@ function writeTitle(text) {
   };
 }
 
-export { incrementLikes, decrementLikes, writeTitle };
+function createComment(commentText, id) {
+  return {
+    type: CREATE_COMMENT,
+    data: { commentText, id },
+  };
+}
+
+export { incrementLikes, decrementLikes, writeTitle, createComment };

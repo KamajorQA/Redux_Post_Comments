@@ -1,4 +1,5 @@
 import Vincent from '../../assets/img/Vincent.jpg';
+import Comments from '../Comments/Comments';
 import Likes from '../Likes/Likes';
 import Title from '../Title/Title';
 import './app.css';
@@ -13,6 +14,7 @@ function App() {
             <Title />
             <Likes />
           </div>
+          <Comments />
         </div>
       </div>
     </div>

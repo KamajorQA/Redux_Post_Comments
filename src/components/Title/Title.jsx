@@ -10,7 +10,6 @@ function Title(props) {
 
   const handleChange = function (event) {
     dispatch(writeTitle(event.target.value));
-    return event.target.value;
   };
 
   return (
