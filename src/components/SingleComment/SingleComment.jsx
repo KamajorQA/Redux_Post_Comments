@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useDispatch } from 'react-redux';
-import { updateComment } from '../../redux/actions';
+import { updateComment, deleteComment } from '../../redux/actions';
 
 function SingleComment({ data }) {
   const { commentText, id } = data;
@@ -14,18 +14,24 @@ function SingleComment({ data }) {
   }, [commentText]);
 
   const handleSingleCommentInput = (e) => {
-    console.log('single comment input value', e.target.value);
     setCurrentCommentText(e.target.value);
   };
 
-  const handleSingleCommentSubmit = (e) => {
+  const handleSingleCommentUpdate = (e) => {
     e.preventDefault();
     dispatch(updateComment(currentCommentText, id));
   };
 
+  const handleCommentDelete = (e) => {
+    e.preventDefault();
+    dispatch(deleteComment(id));
+  };
+
   return (
-    <form className="comments-item" onSubmit={handleSingleCommentSubmit}>
-      <div className="comments-item-delete">&times;</div>
+    <form className="comments-item" onSubmit={handleSingleCommentUpdate}>
+      <div className="comments-item-delete" onClick={handleCommentDelete}>
+        &times;
+      </div>
       <input
         type="text"
         value={currentCommentText}

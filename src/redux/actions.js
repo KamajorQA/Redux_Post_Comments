@@ -4,6 +4,7 @@ import {
   WRITE_TITLE,
   CREATE_COMMENT,
   UPDATE_COMMENT,
+  DELETE_COMMENT,
 } from './types';
 
 function incrementLikes() {
@@ -39,10 +40,18 @@ function updateComment(commentText, id) {
   };
 }
 
+function deleteComment(id) {
+  return {
+    type: DELETE_COMMENT,
+    id,
+  };
+}
+
 export {
   incrementLikes,
   decrementLikes,
   writeTitle,
   createComment,
   updateComment,
+  deleteComment,
 };

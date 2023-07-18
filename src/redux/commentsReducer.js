@@ -1,4 +1,4 @@
-import { CREATE_COMMENT, UPDATE_COMMENT } from './types.js';
+import { CREATE_COMMENT, UPDATE_COMMENT, DELETE_COMMENT } from './types.js';
 
 const initialState = {
   comments: [],
@@ -29,11 +29,21 @@ function commentsReducer(state = initialState, action) {
         comments: updatedComments,
       };
 
+    case DELETE_COMMENT:
+      return (() => {
+        const { id } = action;
+        const { comments } = state;
+        const commentIndex = comments.findIndex((elem) => elem.id === id);
+        const updatedComments = [
+          ...comments.slice(0, commentIndex),
+          ...comments.slice(commentIndex + 1),
+        ];
+        return { ...state, comments: updatedComments };
+      })();
+
     default:
       return state;
   }
 }
-
-console.log('>>>&&commentsReducer', commentsReducer, typeof commentsReducer);
 
 export { commentsReducer };

@@ -4,7 +4,7 @@ import uniqid from 'uniqid';
 import { createComment } from '../../redux/actions.js';
 import SingleComment from '../SingleComment/SingleComment';
 
-function Comments(props) {
+function Comments() {
   const [commentText, setCommentText] = useState('');
 
   const dispatch = useDispatch();
