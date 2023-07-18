@@ -15,6 +15,8 @@ function Comments(props) {
     return commentsReducer.comments;
   });
 
+  console.log('commentsArray >> ', commentsArray);
+
   const handleCommentInput = (e) => {
     setCommentText(e.target.value);
   };
