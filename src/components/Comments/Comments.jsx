@@ -1,7 +1,7 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import uniqid from 'uniqid';
-import { createComment } from '../../redux/actions.js';
+import { createComment, loadComments } from '../../redux/actions.js';
 import SingleComment from '../SingleComment/SingleComment';
 
 function Comments() {
@@ -16,6 +16,10 @@ function Comments() {
   });
 
   console.log('commentsArray >> ', commentsArray);
+
+  useEffect(() => {
+    dispatch(loadComments());
+  }, []);
 
   const handleCommentInput = (e) => {
     setCommentText(e.target.value);

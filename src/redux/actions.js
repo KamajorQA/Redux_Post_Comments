@@ -5,6 +5,7 @@ import {
   CREATE_COMMENT,
   UPDATE_COMMENT,
   DELETE_COMMENT,
+  LOAD_COMMENTS,
 } from './types';
 
 function incrementLikes() {
@@ -47,6 +48,24 @@ function deleteComment(id) {
   };
 }
 
+function loadComments() {
+  return async (dispatch) => {
+    const response = await fetch(
+      'https://jsonplaceholder.typicode.com/comments?_limit=10'
+    );
+    console.log('response >>> ', response);
+    const jsonData = await response.json();
+    console.log(
+      'json file in data variable from response.json() >> ',
+      jsonData
+    );
+    dispatch({
+      type: LOAD_COMMENTS,
+      data: jsonData,
+    });
+  };
+}
+
 export {
   incrementLikes,
   decrementLikes,
@@ -54,4 +73,5 @@ export {
   createComment,
   updateComment,
   deleteComment,
+  loadComments,
 };

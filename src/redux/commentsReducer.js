@@ -1,4 +1,9 @@
-import { CREATE_COMMENT, UPDATE_COMMENT, DELETE_COMMENT } from './types.js';
+import {
+  CREATE_COMMENT,
+  UPDATE_COMMENT,
+  DELETE_COMMENT,
+  LOAD_COMMENTS,
+} from './types.js';
 
 const initialState = {
   comments: [],
@@ -40,6 +45,13 @@ function commentsReducer(state = initialState, action) {
         ];
         return { ...state, comments: updatedComments };
       })();
+
+    case LOAD_COMMENTS:
+      const loadedComments = action.data;
+      const initialComments = loadedComments.map((elem) => {
+        return { commentText: elem.name, id: elem.id };
+      });
+      return { ...state, comments: initialComments };
 
     default:
       return state;
