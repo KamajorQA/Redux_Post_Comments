@@ -10,12 +10,9 @@ function Comments() {
   const dispatch = useDispatch();
 
   const commentsArray = useSelector((state) => {
-    console.log('Comments component state from useSelector >> ', state);
     const { commentsReducer } = state;
     return commentsReducer.comments;
   });
-
-  console.log('commentsArray >> ', commentsArray);
 
   useEffect(() => {
     dispatch(loadComments());

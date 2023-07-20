@@ -10,8 +10,6 @@ const initialState = {
 };
 
 function commentsReducer(state = initialState, action) {
-  console.log('comments reducer', action, 'state >', state);
-
   switch (action.type) {
     case CREATE_COMMENT:
       return {

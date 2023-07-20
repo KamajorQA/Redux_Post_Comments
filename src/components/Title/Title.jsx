@@ -1,8 +1,7 @@
 import { useSelector, useDispatch } from 'react-redux';
 import { writeTitle } from '../../redux/actions';
 
-function Title(props) {
-  console.log('title props > ', props);
+function Title() {
   const titleText = useSelector((state) => {
     return state.titleReducer.text;
   });

@@ -6,6 +6,8 @@ import {
   UPDATE_COMMENT,
   DELETE_COMMENT,
   LOAD_COMMENTS,
+  LOADER_DISPLAY_ON,
+  LOADER_DISPLAY_OFF,
 } from './types';
 
 function incrementLikes() {
@@ -48,21 +50,30 @@ function deleteComment(id) {
   };
 }
 
+function spinnerOn() {
+  return {
+    type: LOADER_DISPLAY_ON,
+  };
+}
+
+function spinnerOff() {
+  return {
+    type: LOADER_DISPLAY_OFF,
+  };
+}
+
 function loadComments() {
   return async (dispatch) => {
+    dispatch(spinnerOn());
     const response = await fetch(
       'https://jsonplaceholder.typicode.com/comments?_limit=10'
     );
-    console.log('response >>> ', response);
     const jsonData = await response.json();
-    console.log(
-      'json file in data variable from response.json() >> ',
-      jsonData
-    );
     dispatch({
       type: LOAD_COMMENTS,
       data: jsonData,
     });
+    dispatch(spinnerOff());
   };
 }
 

@@ -5,7 +5,6 @@ const initialState = {
 };
 
 const titleReducer = (state = initialState, action) => {
-  console.log('titleReducer action object >', action);
   switch (action.type) {
     case WRITE_TITLE:
       return {
