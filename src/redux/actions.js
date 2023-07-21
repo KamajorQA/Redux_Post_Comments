@@ -8,6 +8,8 @@ import {
   LOAD_COMMENTS,
   LOADER_DISPLAY_ON,
   LOADER_DISPLAY_OFF,
+  ERROR_DISPLAY_ON,
+  ERROR_DISPLAY_OFF,
 } from './types';
 
 function incrementLikes() {
@@ -62,18 +64,40 @@ function spinnerOff() {
   };
 }
 
+function errorOn(text) {
+  return {
+    type: ERROR_DISPLAY_ON,
+    errorText: text,
+  };
+}
+
+function errorOff() {
+  return {
+    type: ERROR_DISPLAY_OFF,
+  };
+}
+
 function loadComments() {
   return async (dispatch) => {
     dispatch(spinnerOn());
-    const response = await fetch(
-      'https://jsonplaceholder.typicode.com/comments?_limit=10'
-    );
-    const jsonData = await response.json();
-    dispatch({
-      type: LOAD_COMMENTS,
-      data: jsonData,
-    });
-    dispatch(spinnerOff());
+    try {
+      const response = await fetch(
+        'https://jsonplaceholder.typicode.com/comments?_limit=10'
+      );
+      const jsonData = await response.json();
+      dispatch({
+        type: LOAD_COMMENTS,
+        data: jsonData,
+      });
+    } catch (error) {
+      dispatch(errorOn(error.message));
+      console.error('Error in fetch API caught >> ', error);
+    } finally {
+      dispatch(spinnerOff());
+      setTimeout(() => {
+        dispatch(errorOff());
+      }, 3000);
+    }
   };
 }
 

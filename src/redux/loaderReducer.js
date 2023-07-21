@@ -1,7 +1,13 @@
-import { LOADER_DISPLAY_ON, LOADER_DISPLAY_OFF } from './types.js';
+import {
+  LOADER_DISPLAY_ON,
+  LOADER_DISPLAY_OFF,
+  ERROR_DISPLAY_ON,
+  ERROR_DISPLAY_OFF,
+} from './types.js';
 
 const initialState = {
   loading: false,
+  error: null,
 };
 
 const loaderReducer = (state = initialState, action) => {
@@ -23,6 +29,18 @@ const loaderReducer = (state = initialState, action) => {
       return {
         ...state,
         loading: false,
+      };
+
+    case ERROR_DISPLAY_ON:
+      return {
+        ...state,
+        error: action.errorText,
+      };
+
+    case ERROR_DISPLAY_OFF:
+      return {
+        ...state,
+        error: null,
       };
 
     default:
