@@ -65,9 +65,15 @@ function spinnerOff() {
 }
 
 function errorOn(text) {
-  return {
-    type: ERROR_DISPLAY_ON,
-    errorText: text,
+  return (dispatch) => {
+    dispatch({
+      type: ERROR_DISPLAY_ON,
+      errorText: text,
+    });
+
+    setTimeout(() => {
+      dispatch(errorOff());
+    }, 3000);
   };
 }
 
@@ -109,4 +115,5 @@ export {
   updateComment,
   deleteComment,
   loadComments,
+  errorOn,
 };
